@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <RootNamespace>ProjectA</RootNamespace>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>My.ProjectA</PackageId>
+    <Version>3.2.1</Version>
+    <Authors>Author</Authors>
+    <Company>Company</Company>
+    <Product>Product</Product>
+    <Description>Some Description</Description>
+    <PackageLicenseExpression>mit</PackageLicenseExpression>
+    <TargetsForTfmSpecificBuildOutput>
+      $(TargetsForTfmSpecificBuildOutput);CopyProjectReferencesToPackage
+    </TargetsForTfmSpecificBuildOutput>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ProjectB\ProjectB.csproj" PrivateAssets="all" />    
+  </ItemGroup>
+
+  <Target Name="CopyProjectReferencesToPackage" DependsOnTargets="ResolveReferences">
+    <ItemGroup>
+      <BuildOutputInPackage Include="@(ReferenceCopyLocalPaths-&gt;WithMetadataValue('ReferenceSourceTarget', 'ProjectReference'))" />
+    </ItemGroup>
+  </Target>
+
+</Project>
