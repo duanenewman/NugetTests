@@ -14,7 +14,7 @@ ProjectA
 The resulting nupkg from `dotnet pack` has the following:
 
 Files:
-> lib/netstandard2.0/ProjectA.dll
+> lib/netstandard2.0/ProjectA.dll  
 > lib/netstandard2.0/ProjectB.dll
 
 Refernces:
